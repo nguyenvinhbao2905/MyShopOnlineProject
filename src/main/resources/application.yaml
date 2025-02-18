@@ -1,0 +1,2 @@
+spring.application.name=OnlineShop
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
