@@ -1,4 +1,4 @@
 package io.github.nvbao.onlineshop.service;
 
-public class CategoryService {
+public class InventoryService {
 }

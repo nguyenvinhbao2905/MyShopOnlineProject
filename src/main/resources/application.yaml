@@ -1,2 +1,25 @@
-spring.application.name=OnlineShop
-spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+server:
+  port: 8080
+  servlet:
+    context-path: /myonlineshop
+
+spring:
+  security:
+    user:
+      name: ""
+      password: ""
+
+  application:
+    name: OnLineShop
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/myonlineshop
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true

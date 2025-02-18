@@ -1,4 +1,11 @@
 package io.github.nvbao.onlineshop.repository;
 
-public class UserRepository {
+import io.github.nvbao.onlineshop.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, String> {
+
+
 }
