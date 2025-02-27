@@ -1,12 +1,8 @@
-package io.github.nvbao.onlineshop.entity;
+package io.github.nvbao.onlineshop.entity.usermanager;
 
-import io.github.nvbao.onlineshop.entity.usermanager.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.List;
-
 
 @Entity
 @Getter
@@ -14,17 +10,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Cart {
-
+public class PaymentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long cartId;
+    Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     Customer customer;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    List<CartItem> cartItems;
+    String cardNumber;
+    String cardHolderName;
+    String expirationDate;
+    String cvv;
+    String paymentType;
 
 }

@@ -1,29 +1,28 @@
 package io.github.nvbao.onlineshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Entity
-@Table(name = "inventory")
+@Table(name = "discounts")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Inventory {
+public class Discount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long inventoryId;
+    Long discountId;
 
-    int totalStock;
-    int reservedStock;
+    String codeVoucher;
+    double percentage;
 
-    @OneToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    Product product;
-
+    @OneToMany(mappedBy = "discount")
+    List<Product> products;
 }

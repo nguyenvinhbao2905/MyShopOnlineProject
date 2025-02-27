@@ -1,23 +1,20 @@
 package io.github.nvbao.onlineshop.controller;
 
 
-import io.github.nvbao.onlineshop.dto.request.UserCreationRequest;
-import io.github.nvbao.onlineshop.dto.request.UserUpdateRequest;
-import io.github.nvbao.onlineshop.entity.User;
-import io.github.nvbao.onlineshop.service.UserService;
+import io.github.nvbao.onlineshop.dto.request.user.UserCreationRequest;
+import io.github.nvbao.onlineshop.entity.usermanager.User;
+import io.github.nvbao.onlineshop.service.user.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
 
     @PostMapping
@@ -31,14 +28,14 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    User getUserById(@PathVariable String userId) {
+    Optional<User> getUserById(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
 
-    @PutMapping("/{userId}")
-    User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
-        return userService.updateUser(userId, request);
-    }
+//    @PutMapping("/{userId}")
+//    Optional<User> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+//        return userService.updateUser(userId, request);
+//    }
 
     @DeleteMapping("/{userId}")
     void deleteUser(@PathVariable String userId) {

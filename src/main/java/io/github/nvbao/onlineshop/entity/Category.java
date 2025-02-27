@@ -1,29 +1,27 @@
 package io.github.nvbao.onlineshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "inventory")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Inventory {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long inventoryId;
+    Long categoryId;
 
-    int totalStock;
-    int reservedStock;
+    @Column(nullable = false, unique = true)
+    String name;
 
-    @OneToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    Product product;
-
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    List<Product> products = new ArrayList<>();
 }

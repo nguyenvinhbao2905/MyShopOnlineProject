@@ -1,29 +1,32 @@
 package io.github.nvbao.onlineshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
+
 @Entity
-@Table(name = "inventory")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Inventory {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long inventoryId;
+    Long orderItemId;
 
-    int totalStock;
-    int reservedStock;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    Order order;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     Product product;
+
+    int quantity;
+    BigDecimal unitPrice;
 
 }
